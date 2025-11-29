@@ -1,20 +1,22 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Home } from "./pages/Home";
-import { NotFound } from "./pages/NotFound";
-import { Toaster } from "../src/components/ui/toaster"
+import { Toaster } from "../app/components/ui/toaster"
+import "./globals.css"
+import { MouseFollower } from './components/MouseFollower';
 
-function App() {
-  return (
-    <>
-    <Toaster />
-      <BrowserRouter>
-        <Routes>
-          <Route index element={<Home />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
-    </>
-  );
+export const metadata = {
+  title: "Dylan Pant | Portfolio",
+  description: "Personal portfolio for Dylan Pant"
 }
 
-export default App;
+export default function RootLayout({children}) {
+  return (
+    <html lang="en">
+      <body>
+        <MouseFollower />
+        {/* All route pages will be rendered in children */}
+        {children}
+        <Toaster/>
+      </body>
+    </html>
+  )
+  
+}

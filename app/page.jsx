@@ -1,14 +1,14 @@
-import { ThemeToggle } from "../components/ThemeToggle";
-import { StarBackground } from '@/components/StarBackground';
-import { Navbar } from "@/components/Navbar"
-import { HeroSection } from "../components/HeroSection";
-import { AboutSection } from "../components/AboutSection"
-import { SkillsSection } from "../components/SkillsSection";
-import { ProjectsSection } from "../components/ProjectsSection";
-import { ContactSection } from "../components/ContactSection";
-import { Footer } from "../components/Footer";
+import { ThemeToggle } from "../app/components/ThemeToggle";
+import { StarBackground } from '../app/components/StarBackground';
+import { Navbar } from "../app/components/Navbar"
+import { HeroSection } from "../app/components/HeroSection";
+import { AboutSection } from "../app/components/AboutSection"
+import { SkillsSection } from "../app/components/SkillsSection";
+import { ProjectsSection } from "../app/components/ProjectsSection";
+import { ContactSection } from "../app/components/ContactSection";
+import { Footer } from "../app/components/Footer";
 
-export const Home = () => {
+export default function Home() {
 
     return <div className="min-h-screen bg-background text-foreground overflow-x-hidden ">
         {/* Theme Toggle */}
