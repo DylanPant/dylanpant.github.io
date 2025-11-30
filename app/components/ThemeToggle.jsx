@@ -1,72 +1,59 @@
 "use client"
-import { Moon, Sun } from "lucide-react";
-import { useState, useEffect } from "react";
-import { cn } from "../lib/utils"
+
+import { Moon, Sun, ArrowRight } from "lucide-react"
+import { useState, useEffect } from "react"
+import { cn } from "@/lib/utils"
 
 export const ThemeToggle = () => {
-    const getInitialTheme = () => {
+    const [showHint, setShowHint] = useState(true)
+    const [isDarkMode, setIsDarkMode] = useState(() => {
         if (typeof window === "undefined") return false
-        const storedTheme = localStorage.getItem("theme")
-        if (storedTheme === "dark") return true
-        if (storedTheme === "light") return false
-        return window.matchMedia("(prefers-color-scheme: dark)").matches
-    }
+        return localStorage.getItem("theme") === "dark"
+    })
 
-    const [isDarkMode, setIsDarkMode] = useState(() => getInitialTheme())
-
+    // Sync document class and localStorage when theme changes
     useEffect(() => {
-        // Synchronize DOM (class) with React state; avoid calling setState here
         if (isDarkMode) {
             document.documentElement.classList.add("dark")
+            localStorage.setItem("theme", "dark")
         } else {
             document.documentElement.classList.remove("dark")
+            localStorage.setItem("theme", "light")
         }
-    }, [isDarkMode]);
+    }, [isDarkMode])
 
-    const toggleTheme = async(event) => {
-        const newThemeIsDark = !isDarkMode;
+    // Hide the hint once the user scrolls
+    useEffect(() => {
+        const handleScroll = () => {
+            if (window.scrollY > 50) setShowHint(false)
+        }
+        window.addEventListener("scroll", handleScroll)
+        return () => window.removeEventListener("scroll", handleScroll)
+    }, [])
 
-        // If a browser doesn't use View Transitions
-        if(!document.startViewTransition) {
-            setIsDarkMode(newThemeIsDark);
+    const toggleTheme = async (event) => {
+        setShowHint(false)
+        const newThemeIsDark = !isDarkMode
 
-            if(newThemeIsDark) {
-                document.documentElement.classList.add("dark")
-                localStorage.setItem("theme", "dark")
-            } else {
-                document.documentElement.classList.remove("dark")
-                localStorage.setItem("theme", "light")
-            }
-
+        if (!document.startViewTransition) {
+            setIsDarkMode(newThemeIsDark)
             return
         }
 
-        // Get click coordinates for the circle
-        const x = event.clientX;
-        const y = event.clientY;
-
-        // Find distance to furthest corner
+        const x = event?.clientX ?? innerWidth / 2
+        const y = event?.clientY ?? innerHeight / 2
         const endRadius = Math.hypot(
-            Math.max(x, innerWidth-x),
-            Math.max(y, innerHeight-y)
+            Math.max(x, innerWidth - x),
+            Math.max(y, innerHeight - y)
         )
 
-        // Transition
         const transition = document.startViewTransition(() => {
-            // Update DOM and state
             setIsDarkMode(newThemeIsDark)
-
-            if(newThemeIsDark) {
-                document.documentElement.classList.add("dark")
-                localStorage.setItem("theme", "dark")
-            } else {
-                document.documentElement.classList.remove("dark")
-                localStorage.setItem("theme", "light")
-            }
         })
 
-        // Animate circle clip
-        await transition.ready
+        try {
+            await transition.ready
+        } catch {}
 
         const clipPath = [
             `circle(0px at ${x}px ${y}px)`,
@@ -80,24 +67,39 @@ export const ThemeToggle = () => {
             {
                 duration: 500,
                 easing: "ease-in-out",
-                // going dark -> animate NEW view
-                // going light -> animate OLD view
-                pseudoElement: newThemeIsDark 
-                    ? "::view-transition-new(root)" 
+                pseudoElement: newThemeIsDark
+                    ? "::view-transition-new(root)"
                     : "::view-transition-old(root)",
             }
         )
-    };
+    }
 
     return (
-        <button onClick={toggleTheme} 
-        className={cn("fixed max-sm:hidden top-5 right-5 z-50 pr rounded-full transition-colors duration-300", "focus:outline-hidden")}
-        aria-label="Toggle Theme">
-            {isDarkMode ? (
-                <Sun className="h-5 w-5 text-yellow-500" />
-            ) : (
-                <Moon className="h-5 w-5 text-blue-400" />
-            )}
-        </button>
-    );
-};
+        <div className="fixed top-5 right-5 z-50 flex items-center gap-3">
+            {/* Bouncing Hint Arrow */}
+            <div className={cn(
+                "hidden md:flex items-center gap-2 text-sm text-muted-foreground transition-opacity duration-500",
+                showHint ? "opacity-100" : "opacity-0 pointer-events-none"
+            )}>
+                <span className="text-xs font-medium">Try me!</span>
+                <ArrowRight className="h-4 w-4" />
+            </div>
+
+            <button
+                onClick={toggleTheme}
+                className={cn(
+                    "p-3 rounded-full transition-all duration-300",
+                    "bg-secondary/50 backdrop-blur-sm border border-border hover:border-primary/50 hover:bg-secondary",
+                    "focus:outline-hidden"
+                )}
+                aria-label="Toggle Theme"
+            >
+                {isDarkMode ? (
+                    <Moon className="h-5 w-5 text-blue-400" />
+                ) : (
+                    <Sun className="h-5 w-5 text-yellow-500" />
+                )}
+            </button>
+        </div>
+    )
+}

@@ -1,6 +1,6 @@
 "use client"
 import { cn } from "../lib/utils"
-import { Menu, X } from "lucide-react"
+import { Medal, Menu, X } from "lucide-react"
 import { useEffect, useState } from "react"
 import Link from "next/link"
 
@@ -51,6 +51,13 @@ export const Navbar = () => {
                     ))}
                 </div>
 
+                {/* Presidential Scholar */}
+                <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 text-xs font-medium cursor-help"
+                title="2024 US Presidential Scholar">
+                    <Medal size={14} />
+                    <span className="hidden lg:inline">Presidential Scholar</span>
+                </div>
+
             {/* mobile nav -- vertical */}
             <button onClick={() => setIsMenuOpened((prev) => (!prev))}
                 className="md:hidden p-2 text-foreground z-50"
@@ -78,6 +85,12 @@ export const Navbar = () => {
                             {item.name}
                         </Link>
                     ))}
+
+                    {/* Mobile - Presidential Scholar badge */}
+                    <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-600 dark:text-yellow-400 text-sm font-medium">
+                        <Medal size={16} />
+                        <span>2024 US Presidential Scholar</span>
+                    </div>
                 </div>
             </div>
         </div>

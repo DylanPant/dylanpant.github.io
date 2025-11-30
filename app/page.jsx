@@ -7,6 +7,7 @@ import { SkillsSection } from "../app/components/SkillsSection";
 import { ProjectsSection } from "../app/components/ProjectsSection";
 import { ContactSection } from "../app/components/ContactSection";
 import { Footer } from "../app/components/Footer";
+import { AwardSection } from './components/AwardsSection';
 
 export default function Home() {
 
@@ -23,6 +24,7 @@ export default function Home() {
         {/* Main Content */}
         <main>
             <HeroSection />
+            <AwardSection />
             <AboutSection />
             <SkillsSection />
             <ProjectsSection />

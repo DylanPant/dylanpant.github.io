@@ -132,9 +132,14 @@
 }
 
 /* 4. Custom Utility Classes */
+
 @utility text-glow {
-  text-shadow: 0 0 10px --primary;
+  @apply relative;
+  /* NEW: Use a light, thick shadow for maximum visibility */
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2), /* White glow */
+               0 0 20px rgba(255, 255, 255, 0.5); /* Wider blur */
 }
+
 @utility card-hover {
   @apply transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg;
 }

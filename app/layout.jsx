@@ -13,7 +13,7 @@ export default function RootLayout({children}) {
     <html lang="en">
       <body>
         <SmoothScroll>
-          <MouseFollower />
+            <MouseFollower />
             {/* All route pages will be rendered in children */}
             {children}
           <Toaster/>
