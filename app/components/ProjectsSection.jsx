@@ -1,6 +1,7 @@
 "use client"
-import { ArrowRight, Github } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import Image from "next/image"
+import { FaGithub } from "react-icons/fa"
 
 // add images to public/projects
 const projects = [
@@ -69,7 +70,7 @@ export const ProjectsSection = () => {
                             <div className="flex space-x-3">
                                 <a href={project.githubURL}
                                 className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                                target="_blank"><Github size={20}/></a>
+                                target="_blank"><FaGithub size={20}/></a>
                             </div>
                         </div>
                         </div>

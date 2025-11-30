@@ -1,5 +1,6 @@
 "use client"
-import { Linkedin, Mail } from "lucide-react";
+import { Mail } from "lucide-react";
+import { FaLinkedin } from "react-icons/fa";
 
 export const ContactSection = () => {
 
@@ -7,7 +8,7 @@ export const ContactSection = () => {
     className="py-24 px-4 relative bg-secondary/30">
         <div className="container mx-auto max-w-5xl">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-                Get In <span className="text-primary">Touch</span>
+                Let's Get In <span className="text-primary">Touch</span>
             </h2>
 
             <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
@@ -20,7 +21,7 @@ export const ContactSection = () => {
                 </a>
                 
                 <a href="https://linkedin.com/in/dylanpant" target="_blank" className="flex items-center gap-3 px-8 py-4 bg-card border border-border rounded-full hover:bg-secondary transition-colors">
-                    <Linkedin size={20} /> LinkedIn
+                    <FaLinkedin size={20} /> LinkedIn
                 </a>
 </div>
 

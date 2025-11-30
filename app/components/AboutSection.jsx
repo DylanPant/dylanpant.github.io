@@ -1,5 +1,5 @@
 "use client"
-import { Briefcase, Code, User } from "lucide-react"
+import { Briefcase, Code } from "lucide-react"
 import { GiSpaceNeedle } from "react-icons/gi"
 export const AboutSection = () => {
 
