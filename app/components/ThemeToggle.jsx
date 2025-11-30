@@ -4,20 +4,24 @@ import { useState, useEffect } from "react";
 import { cn } from "../lib/utils"
 
 export const ThemeToggle = () => {
-    const [isDarkMode, setIsDarkMode] = useState(false)
+    const getInitialTheme = () => {
+        if (typeof window === "undefined") return false
+        const storedTheme = localStorage.getItem("theme")
+        if (storedTheme === "dark") return true
+        if (storedTheme === "light") return false
+        return window.matchMedia("(prefers-color-scheme: dark)").matches
+    }
+
+    const [isDarkMode, setIsDarkMode] = useState(() => getInitialTheme())
 
     useEffect(() => {
-        const storedTheme = localStorage.getItem("theme")
-
-        // Check if user has a stored preference OR if system is dark
-        if (storedTheme === "dark" || (!storedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-            setIsDarkMode(true)
+        // Synchronize DOM (class) with React state; avoid calling setState here
+        if (isDarkMode) {
             document.documentElement.classList.add("dark")
         } else {
-            setIsDarkMode(false)
             document.documentElement.classList.remove("dark")
         }
-    }, []);
+    }, [isDarkMode]);
 
     const toggleTheme = async(event) => {
         const newThemeIsDark = !isDarkMode;
