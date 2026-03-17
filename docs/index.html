@@ -1,31 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
+  <title>Tiktoken-rs Documentation</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-  <meta name="description" content="Description">
+  <meta name="description" content="Tiktoken-rs library documentation">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
-  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css">
+
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify@4/lib/themes/vue.css"> <!--Themes-->
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css"> <!--Latex-->
 </head>
+
 <body>
-  <nav>
-     <a href="#/">EN</a>
-    <a href="#/zh-cn/">简体中文</a>
-  </nav>
+  <style>
+    .markdown-section {
+      padding-bottom: 50vh;
+    }
+  </style>
   <div id="app"></div>
-  <script>
+  <script> // Github corner window
     window.$docsify = {
-      name: '',
-      repo: '',
+      name: 'Tiktoken-rs',
+      repo: 'https://github.com/zurawiki/tiktoken-rs',
       loadSidebar: true,
-      alias: {
-        '/.*/_sidebar.md': '/_sidebar.md'
-      },
-      subMaxLevel:2
+      subMaxLevel: 2,
+      search: {
+        maxAge: 86400000, // 1 day expiration time (ms)
+        paths: 'auto',
+        placeholder: 'Type to search',
+        noData: 'No Results!',
+        depth: 3,
+        hideOtherSidebarContent: false
+      }
     }
   </script>
-  <!-- Docsify v4 -->
+
   <script src="//cdn.jsdelivr.net/npm/docsify@4"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/plugins/search.min.js"></script> <!--Search Bar-->
+  <script src="//cdn.jsdelivr.net/npm/docsify-katex@latest/dist/docsify-katex.js"></script> <!--Latex-->
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script> <!--Clodeblocks-->
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-rust.min.js"></script><!--rust syntax coloring-->
+  <script src="//cdn.jsdelivr.net/npm/prismjs@1/components/prism-bash.min.js"></script> <!--bash syntax coloring-->
 </body>
+
 </html>
