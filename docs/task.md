@@ -143,7 +143,7 @@ Once you have determined your `T_input`, you can use the Total Cost Formula to e
 
 ![Total Cost Formula](https://math.now.sh?from=Total%5C_Cost%3D%5Csum_%7Bi%3D1%7D%5En%5Cleft(%5Cfrac%7BT_%7Binput%7D%7D%7B1000%7D%5Ccdot%20Rate_%7Binput%7D%5Cright))
 
-Where n is the number of files, T_input is the number of input tokens, and Rate_input is the cost per input token for a given model.
+Where n is the number of files, `T_input` is the number of input tokens, and `Rate_input` is the cost per input token for a given model.
 
 ?> **Optional:** If you are budgeting your API calls, you can compare them using multiple vocabularies. You can do this by reusing a file across vocabularies:
 

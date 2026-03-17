@@ -92,7 +92,7 @@ If you pass a large `.txt` file (GB of data) using the `–f` flag, the CLI will
 
 **Q. Why is Rust failing when importing the crate?**
 Tiktoken-rs uses advanced Rust features for performance optimization. If your build fails during cargo compilation, ensure your Rust toolchain is up to date.
-Run rustup update in your terminal to fetch the latest stable compiler.
+Run `rustup` update in your terminal to fetch the latest stable compiler.
 
 ## Glossary
 
