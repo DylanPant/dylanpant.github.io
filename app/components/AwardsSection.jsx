@@ -4,7 +4,7 @@ import { RiMedalLine } from "react-icons/ri"
 
 export const AwardSection = () => {
     return (
-        <div className="w-full max-w-4xl mx-auto mt-12 mb-20 px-4">
+        <div id="awards" className="w-full max-w-4xl mx-auto mt-12 mb-20 px-4">
             <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-amber-500/10 via-background to-background border border-yellow-500/20 p-8 md:p-12 text-center">
                 
                 {/* Background Decoration */}

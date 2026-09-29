@@ -8,7 +8,7 @@ export const ContactSection = () => {
     className="py-24 px-4 relative bg-secondary/30">
         <div className="container mx-auto max-w-5xl">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-                Let&apos;s Get In <span className="text-primary">Touch</span>
+                Let&apos;s Get In Touch
             </h2>
 
             <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
@@ -16,8 +16,8 @@ export const ContactSection = () => {
             </p>
 
             <div className="flex flex-col md:flex-row gap-6 justify-center mt-8">
-                <a href="mailto:Dylan.s.pant@gmail.com" className="flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground rounded-full font-bold hover:opacity-90 transition-opacity">
-                    <Mail size={20} /> Dylan.s.pant@gmail.com
+                <a href="mailto:dylan.s.pant@gmail.com" className="flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground rounded-full font-bold hover:opacity-90 transition-opacity">
+                    <Mail size={20} /> dylan.s.pant@gmail.com
                 </a>
                 
                 <a href="https://linkedin.com/in/dylanpant" target="_blank" className="flex items-center gap-3 px-8 py-4 bg-card border border-border rounded-full hover:bg-secondary transition-colors">

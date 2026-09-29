@@ -1,7 +1,14 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  output: "export",
+  trailingSlash: true,
+  images: {
+    unoptimized: true,
+  },
+  // Set NEXT_PUBLIC_BASE_PATH=/my-nextjs-portfolio in CI for GitHub Pages subdirectory deployment.
+  // Leave unset (or empty string) for a custom domain at the root.
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH ?? "",
 };
 
 export default nextConfig;

@@ -3,13 +3,14 @@ import { cn } from "../lib/utils"
 import { Medal, Menu, X } from "lucide-react"
 import { useEffect, useState } from "react"
 import Link from "next/link"
+import { ThemeToggle } from "./ThemeToggle"
 
 const navItems = [
-    {name: "Home", href: "#hero"}, 
-    {name: "About", href: "#about"}, 
-    {name: "Skills", href: "#skills"}, 
-    {name: "Projects", href: "#projects"}, 
-    {name: "Contact", href: "#contact"}, 
+    {name: "Experience", href: "#experience"},
+    {name: "Projects", href: "#projects"},
+    {name: "Skills", href: "#skills"},
+    {name: "About", href: "#about"},
+    {name: "Contact", href: "#contact"},
 ]
 
 export const Navbar = () => {
@@ -51,11 +52,15 @@ export const Navbar = () => {
                     ))}
                 </div>
 
-                {/* Presidential Scholar */}
-                <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 text-xs font-medium cursor-help"
-                title="2024 US Presidential Scholar">
-                    <Medal size={14} />
-                    <span className="hidden lg:inline">Presidential Scholar</span>
+                {/* Right side: theme toggle + Presidential Scholar badge */}
+                <div className="flex items-center gap-3">
+                    <ThemeToggle />
+
+                    <div className="hidden md:flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 text-xs font-medium cursor-help"
+                    title="2024 US Presidential Scholar">
+                        <Medal size={14} />
+                        <span className="hidden lg:inline">Presidential Scholar</span>
+                    </div>
                 </div>
 
             {/* mobile nav -- vertical */}

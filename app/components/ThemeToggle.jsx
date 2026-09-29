@@ -75,8 +75,7 @@ export const ThemeToggle = () => {
     }
 
     return (
-        <div className="fixed top-5 right-5 z-50 flex items-center gap-3">
-            {/* Bouncing Hint Arrow */}
+        <div className="flex items-center gap-3">
             <div className={cn(
                 "hidden md:flex items-center gap-2 text-sm text-muted-foreground transition-opacity duration-500",
                 showHint ? "opacity-100" : "opacity-0 pointer-events-none"
@@ -88,16 +87,16 @@ export const ThemeToggle = () => {
             <button
                 onClick={toggleTheme}
                 className={cn(
-                    "p-3 rounded-full transition-all duration-300",
+                    "p-2.5 rounded-full transition-all duration-300",
                     "bg-secondary/50 backdrop-blur-sm border border-border hover:border-primary/50 hover:bg-secondary",
                     "focus:outline-hidden"
                 )}
                 aria-label="Toggle Theme"
             >
                 {isDarkMode ? (
-                    <Moon className="h-5 w-5 text-blue-400" />
+                    <Moon className="h-4 w-4 text-blue-400" />
                 ) : (
-                    <Sun className="h-5 w-5 text-yellow-500" />
+                    <Sun className="h-4 w-4 text-yellow-500" />
                 )}
             </button>
         </div>

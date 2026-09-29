@@ -194,10 +194,12 @@ export const WalkingPeople = () => {
         width: '100%',
         height: '100%',
         pointerEvents: 'none',
-        zIndex: 0, 
-        mixBlendMode: "multiply", 
-        opacity: 0.9,
-        display: 'block'
+        zIndex: 0,
+        mixBlendMode: "multiply",
+        opacity: 0.85,
+        display: 'block',
+        maskImage: 'linear-gradient(to right, transparent, black 12%, black 88%, transparent)',
+        WebkitMaskImage: 'linear-gradient(to right, transparent, black 12%, black 88%, transparent)',
       }}
     />
   )

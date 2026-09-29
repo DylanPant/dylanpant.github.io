@@ -5,42 +5,8 @@ import { useEffect, useState } from "react";
 // id, size, x, y, delay, animationDuration
 
 export const StarBackground = () => {
-  const [stars, setStars] = useState(() => {
-    if (typeof window === "undefined") return [];
-    const numberOfStars = Math.floor((window.innerWidth * window.innerHeight) / 10000);
-    const newStars = [];
-    for (let i = 0; i < numberOfStars; i++) {
-      newStars.push({
-        id: i,
-        size: Math.random() * 3 + 1,
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        opacity: Math.random() * 0.5 + 0.5,
-        animationDuration: Math.random() * 4 + 2,
-      });
-    }
-    return newStars;
-  });
-
-  // Initialize meteors client-side with small delays so they start moving
-  // immediately when the page opens (avoid long animationDelay values).
-  const [meteors, setMeteors] = useState(() => {
-    if (typeof window === "undefined") return [];
-    const numberOfMeteors = 4;
-    const newMeteors = [];
-    for (let i = 0; i < numberOfMeteors; i++) {
-      newMeteors.push({
-        id: i,
-        size: Math.random() * 2 + 1,
-        x: Math.random() * 100,
-        y: Math.random() * 20,
-        // small random delay (0 - 0.8s) so meteors begin moving quickly
-        delay: Math.random() * 0.8,
-        animationDuration: Math.random() * 3 + 3,
-      });
-    }
-    return newMeteors;
-  });
+  const [stars, setStars] = useState([]);
+  const [meteors, setMeteors] = useState([]);
 
   const generateStars = () => {
     const numberOfStars = Math.floor((window.innerWidth * window.innerHeight) / 10000);
@@ -75,11 +41,10 @@ export const StarBackground = () => {
     setMeteors(newMeteors);
   };
 
-  // Meteors are initialized via the lazy state initializer above. If you want to
-  // regenerate meteors later, implement a regeneration function here.
-
   useEffect(() => {
-    // Initial state is provided by lazy initializers; only listen for resize here.
+    generateStars();
+    generateMeteors();
+
     const handleResize = () => {
       generateStars();
       generateMeteors();

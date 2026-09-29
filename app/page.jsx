@@ -1,20 +1,16 @@
-import { ThemeToggle } from "../app/components/ThemeToggle";
 import { StarBackground } from '../app/components/StarBackground';
 import { Navbar } from "../app/components/Navbar"
 import { HeroSection } from "../app/components/HeroSection";
-import { AboutSection } from "../app/components/AboutSection"
-import { SkillsSection } from "../app/components/SkillsSection";
+import { ExperienceSection } from "../app/components/ExperienceSection";
 import { ProjectsSection } from "../app/components/ProjectsSection";
+import { SkillsSection } from "../app/components/SkillsSection";
+import { AboutSection } from "../app/components/AboutSection"
 import { ContactSection } from "../app/components/ContactSection";
 import { Footer } from "../app/components/Footer";
-import { AwardSection } from './components/AwardsSection';
 
 export default function Home() {
 
-    return <div className="min-h-screen bg-background text-foreground overflow-x-hidden ">
-        {/* Theme Toggle */}
-        <ThemeToggle />
-
+    return <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
         {/* Background Effects */}
         <StarBackground />
 
@@ -24,10 +20,10 @@ export default function Home() {
         {/* Main Content */}
         <main>
             <HeroSection />
-            <AwardSection />
-            <AboutSection />
-            <SkillsSection />
+            <ExperienceSection />
             <ProjectsSection />
+            <SkillsSection />
+            <AboutSection />
             <ContactSection />
         </main>
 
