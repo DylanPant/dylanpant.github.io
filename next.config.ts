@@ -6,8 +6,7 @@ const nextConfig: NextConfig = {
   images: {
     unoptimized: true,
   },
-  // Set NEXT_PUBLIC_BASE_PATH=/my-nextjs-portfolio in CI for GitHub Pages subdirectory deployment.
-  // Leave unset (or empty string) for a custom domain at the root.
+  // CI sets this to /<repo-name> for GitHub Pages; leave unset for local dev or a custom domain.
   basePath: process.env.NEXT_PUBLIC_BASE_PATH ?? "",
 };
 
