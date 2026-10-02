@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dylan Pant: Portfolio
 
-## Getting Started
+Personal portfolio site for Dylan Pant (Computer Science, University of Washington, Class of 2028).
+It is a single static page built to be scanned quickly: who I am, what I'm looking for, experience,
+projects, skills, and how to reach me.
 
-First, run the development server:
+Live at **https://dylanpant.github.io**.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Stack
+
+- [Next.js 16](https://nextjs.org) App Router with static export (`output: "export"`)
+- React 19, Tailwind CSS v4 (theme tokens in `app/globals.css`)
+- `next-themes` for light/dark mode (class-based, no flash on load)
+- `next/font` (Inter for body text, Space Grotesk for headings)
+- `lucide-react` and `react-icons` for icons
+
+## Project layout
+
+```
+app/
+  layout.jsx         metadata (SEO, Open Graph, Twitter), fonts, theme provider
+  page.jsx           section order
+  icon.svg           favicon
+  lib/site.js        links, nav items and the RESUME_AVAILABLE flag
+  components/        one file per section, plus Navbar, ThemeToggle, Section
+lib/utils.ts         cn() class-name helper
+public/og.png        1200x630 social preview image
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Content (experience, projects, skills) lives in plain arrays at the top of each section component.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Develop
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm install
+npm run dev     # http://localhost:3000
+npm run lint
+npm run build   # static site in out/
+```
 
-## Learn More
+## Deploy
 
-To learn more about Next.js, take a look at the following resources:
+Pushing to `main` runs `.github/workflows/deploy.yml`, which builds the static export and publishes
+`out/` to GitHub Pages. Because this repo is `dylanpant.github.io`, the site is served from the domain
+root. For any other repo name, the workflow sets `NEXT_PUBLIC_BASE_PATH=/<repo>` automatically.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Adding the resume
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Save the PDF as `public/Dylan_Pant_Resume.pdf`.
+2. In `app/lib/site.js`, set `RESUME_AVAILABLE = true`.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The Resume button in the hero and the Resume link in the navbar appear only when that flag is true.
