@@ -2,6 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "export",
+  // Pin the root so stray lockfiles in parent directories are not picked up.
+  turbopack: { root: __dirname },
   trailingSlash: true,
   images: {
     unoptimized: true,

@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Local agent tooling (untracked).
+    ".agents/**",
+    ".claude/**",
+    ".playwright-mcp/**",
   ]),
 ]);
 
