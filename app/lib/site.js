@@ -7,7 +7,7 @@ export const asset = (path) => `${basePath}${path}`
 
 // To publish your resume: drop the PDF at public/Dylan_Pant_Resume.pdf, then set this to true.
 // The Resume buttons in the hero and navbar only render while this is true.
-export const RESUME_AVAILABLE = false
+export const RESUME_AVAILABLE = true
 export const RESUME_URL = asset("/Dylan_Pant_Resume.pdf")
 
 export const SITE_URL = "https://dylanpant.github.io"
