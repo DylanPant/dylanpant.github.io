@@ -1,5 +1,4 @@
 import { Space_Grotesk } from 'next/font/google'
-import { Toaster } from "../app/components/ui/toaster"
 import "./globals.css"
 import { MouseFollower } from './components/MouseFollower';
 import { SmoothScroll } from './components/SmoothScroll';
@@ -21,7 +20,6 @@ export default function RootLayout({children}) {
         <SmoothScroll>
             <MouseFollower />
             {children}
-          <Toaster/>
         </SmoothScroll>
       </body>
     </html>
