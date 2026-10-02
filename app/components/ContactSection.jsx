@@ -4,7 +4,7 @@ import { EMAIL, GITHUB_URL, LINKEDIN_URL } from "../lib/site"
 import { Section, buttonStyles } from "./Section"
 
 export const ContactSection = () => (
-    <Section id="contact" title="Contact">
+    <Section id="contact" title="Contact" className="bg-muted">
         <p className="max-w-2xl text-muted-foreground">
             I&apos;m always interested in new projects and career opportunities, especially Software Engineering
             internships for Summer 2027. The fastest way to reach me is email.

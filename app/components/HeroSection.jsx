@@ -1,4 +1,4 @@
-import { FileText, Mail } from "lucide-react"
+import { Award, FileText, Mail } from "lucide-react"
 import { FaGithub, FaLinkedin } from "react-icons/fa"
 import { EMAIL, GITHUB_URL, LINKEDIN_URL, RESUME_AVAILABLE, RESUME_URL } from "../lib/site"
 import { buttonStyles } from "./Section"
@@ -12,6 +12,12 @@ export const HeroSection = () => (
             <p className="mt-3 text-lg font-medium text-foreground md:text-xl">
                 Computer Science @ University of Washington · Class of 2028
             </p>
+            <a
+                href="#honors"
+                className="mt-4 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3.5 py-1.5 text-sm font-semibold text-primary hover:bg-primary/15 transition-colors"
+            >
+                <Award size={16} aria-hidden="true" /> 2024 U.S. Presidential Scholar
+            </a>
             <p className="mt-2 text-base font-semibold text-primary md:text-lg">
                 Seeking Software Engineering internships for Summer 2027
             </p>

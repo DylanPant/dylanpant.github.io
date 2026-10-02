@@ -7,7 +7,7 @@ const skillGroups = [
 ]
 
 export const SkillsSection = () => (
-    <Section id="skills" title="Skills">
+    <Section id="skills" title="Skills" className="bg-muted">
         <dl className="space-y-5">
             {skillGroups.map((group) => (
                 <div key={group.label} className="grid gap-2 sm:grid-cols-[10rem_1fr] sm:gap-4">

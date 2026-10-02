@@ -47,7 +47,7 @@ const linkStyle =
     "inline-flex items-center gap-1.5 text-sm font-semibold text-primary underline-offset-4 hover:underline"
 
 export const ProjectsSection = () => (
-    <Section id="projects" title="Projects" className="bg-muted">
+    <Section id="projects" title="Projects">
         <div className="grid gap-6 md:grid-cols-2">
             {projects.map((project) => (
                 <article key={project.id} className="flex flex-col rounded-lg border border-border bg-card p-6">

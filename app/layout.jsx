@@ -17,7 +17,7 @@ const spaceGrotesk = Space_Grotesk({
 
 const title = "Dylan Pant | Software Engineer"
 const description =
-    "Dylan Pant, Computer Science at the University of Washington (Class of 2028). Seeking Software Engineering internships for Summer 2027. Experience at Microsoft and UW School of Medicine."
+    "Dylan Pant, Computer Science at the University of Washington (Class of 2028). 2024 U.S. Presidential Scholar. Seeking Software Engineering internships for Summer 2027. Experience at Microsoft and UW School of Medicine."
 const ogImage = { url: asset("/og.png"), width: 1200, height: 630, alt: "Dylan Pant, Software Engineer" }
 
 export const metadata = {

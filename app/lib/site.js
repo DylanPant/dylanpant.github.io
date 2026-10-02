@@ -17,6 +17,7 @@ export const LINKEDIN_URL = "https://linkedin.com/in/dylanpant"
 
 export const NAV_ITEMS = [
     { name: "Experience", href: "#experience" },
+    { name: "Honors", href: "#honors" },
     { name: "Projects", href: "#projects" },
     { name: "Skills", href: "#skills" },
     { name: "About", href: "#about" },

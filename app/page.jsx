@@ -1,6 +1,7 @@
 import { Navbar } from "./components/Navbar"
 import { HeroSection } from "./components/HeroSection"
 import { ExperienceSection } from "./components/ExperienceSection"
+import { HonorsSection } from "./components/HonorsSection"
 import { ProjectsSection } from "./components/ProjectsSection"
 import { SkillsSection } from "./components/SkillsSection"
 import { AboutSection } from "./components/AboutSection"
@@ -20,6 +21,7 @@ export default function Home() {
             <main id="main" tabIndex={-1} className="focus:outline-none">
                 <HeroSection />
                 <ExperienceSection />
+                <HonorsSection />
                 <ProjectsSection />
                 <SkillsSection />
                 <AboutSection />
