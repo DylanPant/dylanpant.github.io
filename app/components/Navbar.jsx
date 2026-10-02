@@ -1,104 +1,70 @@
 "use client"
-import { cn } from "../lib/utils"
-import { Medal, Menu, X } from "lucide-react"
-import { useEffect, useState } from "react"
-import Link from "next/link"
+
+import { Menu, X } from "lucide-react"
+import { useState } from "react"
+import { cn } from "@/lib/utils"
+import { NAV_ITEMS, RESUME_AVAILABLE, RESUME_URL } from "../lib/site"
 import { ThemeToggle } from "./ThemeToggle"
 
-const navItems = [
-    {name: "Experience", href: "#experience"},
-    {name: "Projects", href: "#projects"},
-    {name: "Skills", href: "#skills"},
-    {name: "About", href: "#about"},
-    {name: "Contact", href: "#contact"},
-]
+const NavLinks = ({ className, onNavigate }) => (
+    <ul className={className}>
+        {NAV_ITEMS.map((item) => (
+            <li key={item.href}>
+                <a
+                    href={item.href}
+                    onClick={onNavigate}
+                    className="block rounded-md px-3 py-2 text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
+                >
+                    {item.name}
+                </a>
+            </li>
+        ))}
+        {RESUME_AVAILABLE && (
+            <li>
+                <a
+                    href={RESUME_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    onClick={onNavigate}
+                    className="block rounded-md px-3 py-2 text-sm font-semibold text-primary hover:bg-muted transition-colors"
+                >
+                    Resume
+                </a>
+            </li>
+        )}
+    </ul>
+)
 
 export const Navbar = () => {
-    const [isScrolled, setIsScrolled] = useState(false);
-    const [isMenuOpen, setIsMenuOpened] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
+    const close = () => setIsMenuOpen(false)
 
-    useEffect(() => {
-        const handleScroll = () => {
-            setIsScrolled(window.scrollY > 10) // greater than Nav size
-        }
+    return (
+        <header className="sticky top-0 z-40 border-b border-border bg-background/90 backdrop-blur">
+            <nav aria-label="Main" className="mx-auto flex h-14 max-w-5xl items-center justify-between px-4">
+                <a href="#top" className="font-heading text-base font-bold tracking-tight text-foreground">
+                    Dylan Pant
+                </a>
 
-        window.addEventListener("scroll", handleScroll)
-
-        return () => window.removeEventListener("scroll", handleScroll);
-
-    }, [])
-
-    return ( 
-    <nav className={cn(
-        "fixed w-full z-40 transition-all duration-300", 
-        isScrolled ? "py-3 bg-background/80 backdrop-blur-md shadow-xs" : "py-5"
-        )} 
-    >
-        <div className="container flex items-center justify-between">
-            <a className="text-xl font-bold text-primary flex items-center" href="#hero">
-                
-                <span className="relative px-3 z-10">
-                    {" "}
-                    <span className="text-glow text-foreground">Dylan&apos;s</span> Portfolio
-                </span>
-            </a>
-
-            {/* desktop nav */}
-                <div className="hidden md:flex space-x-8">
-                    {navItems.map((item, key) => (
-                        <a key={key} href={item.href} 
-                            className="text-foreground/80 hover:text-primary transition-colors duration-300">
-                                {item.name}</a>
-                    ))}
-                </div>
-
-                {/* Right side: theme toggle + Presidential Scholar badge */}
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
+                    <NavLinks className="hidden items-center gap-1 md:flex" />
                     <ThemeToggle />
-
-                    <div className="hidden md:flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-400 text-xs font-medium cursor-help"
-                    title="2024 US Presidential Scholar">
-                        <Medal size={14} />
-                        <span className="hidden lg:inline">Presidential Scholar</span>
-                    </div>
+                    <button
+                        type="button"
+                        onClick={() => setIsMenuOpen((open) => !open)}
+                        className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border text-foreground hover:bg-muted md:hidden"
+                        aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+                        aria-expanded={isMenuOpen}
+                        aria-controls="mobile-menu"
+                    >
+                        {isMenuOpen ? <X size={18} aria-hidden="true" /> : <Menu size={18} aria-hidden="true" />}
+                    </button>
                 </div>
+            </nav>
 
-            {/* mobile nav -- vertical */}
-            <button onClick={() => setIsMenuOpened((prev) => (!prev))}
-                className="md:hidden p-2 text-foreground z-50"
-                aria-label={isMenuOpen ? "Close Menu" : "Open Menu"}>{isMenuOpen 
-            ? <X size={24}/>
-            : <Menu size={24}/>}
-            </button>
-
-            <div className={cn(
-            "fixed inset-0 bg-background/95 backdrop-blur-md z-40 flex flex-col items-center justify-center", 
-            "transition-all duration-300 md:hidden",
-            isMenuOpen 
-                ? "opacity-100 pointer-events-auto" 
-                : "opacity-0 pointer-events-none"
-            )}>
-                <div className="flex flex-col space-y-8 text-xl">
-                    {navItems.map((item, key) => (
-                        <Link
-                        key={key} 
-                        href={item.href}
-                        scroll={true}
-                        className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                        onClick={() => setIsMenuOpened(false)}
-                        >
-                            {item.name}
-                        </Link>
-                    ))}
-
-                    {/* Mobile - Presidential Scholar badge */}
-                    <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-yellow-500/10 border border-yellow-500/30 text-yellow-600 dark:text-yellow-400 text-sm font-medium">
-                        <Medal size={16} />
-                        <span>2024 US Presidential Scholar</span>
-                    </div>
-                </div>
+            <div id="mobile-menu" className={cn("border-t border-border px-4 py-2 md:hidden", !isMenuOpen && "hidden")}>
+                <NavLinks className="flex flex-col" onNavigate={close} />
             </div>
-        </div>
-    </nav>
-    );
+        </header>
+    )
 }

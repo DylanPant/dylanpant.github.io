@@ -1,31 +1,24 @@
-"use client"
-import { Mail } from "lucide-react";
-import { FaLinkedin } from "react-icons/fa";
+import { Mail } from "lucide-react"
+import { FaGithub, FaLinkedin } from "react-icons/fa"
+import { EMAIL, GITHUB_URL, LINKEDIN_URL } from "../lib/site"
+import { Section, buttonStyles } from "./Section"
 
-export const ContactSection = () => {
-
-    return <section id="contact" 
-    className="py-24 px-4 relative bg-secondary/30">
-        <div className="container mx-auto max-w-5xl">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
-                Let&apos;s Get In Touch
-            </h2>
-
-            <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-                I&apos;m always interested in new project and career opportunities! Feel free to reach out.
-            </p>
-
-            <div className="flex flex-col md:flex-row gap-6 justify-center mt-8">
-                <a href="mailto:dylan.s.pant@gmail.com" className="flex items-center gap-3 px-8 py-4 bg-primary text-primary-foreground rounded-full font-bold hover:opacity-90 transition-opacity">
-                    <Mail size={20} /> dylan.s.pant@gmail.com
-                </a>
-                
-                <a href="https://linkedin.com/in/dylanpant" target="_blank" className="flex items-center gap-3 px-8 py-4 bg-card border border-border rounded-full hover:bg-secondary transition-colors">
-                    <FaLinkedin size={20} /> LinkedIn
-                </a>
-</div>
-
+export const ContactSection = () => (
+    <Section id="contact" title="Contact">
+        <p className="max-w-2xl text-muted-foreground">
+            I&apos;m always interested in new projects and career opportunities, especially Software Engineering
+            internships for Summer 2027. The fastest way to reach me is email.
+        </p>
+        <div className="mt-6 flex flex-wrap gap-3">
+            <a href={`mailto:${EMAIL}`} className={buttonStyles.primary}>
+                <Mail size={16} aria-hidden="true" /> {EMAIL}
+            </a>
+            <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className={buttonStyles.secondary}>
+                <FaLinkedin size={16} aria-hidden="true" /> LinkedIn
+            </a>
+            <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" className={buttonStyles.secondary}>
+                <FaGithub size={16} aria-hidden="true" /> GitHub
+            </a>
         </div>
-        
-    </section>
-}
+    </Section>
+)

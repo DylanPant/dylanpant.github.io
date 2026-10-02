@@ -1,57 +1,46 @@
-"use client"
-import { ArrowDown, Medal } from "lucide-react";
-import { FaLinkedin } from "react-icons/fa"
-import { WalkingPeople } from './WalkingPeople';
+import { FileText, Mail } from "lucide-react"
+import { FaGithub, FaLinkedin } from "react-icons/fa"
+import { EMAIL, GITHUB_URL, LINKEDIN_URL, RESUME_AVAILABLE, RESUME_URL } from "../lib/site"
+import { buttonStyles } from "./Section"
 
-export const HeroSection = () => {
+export const HeroSection = () => (
+    <section id="top" aria-labelledby="hero-heading" className="scroll-mt-20 px-4 pt-16 pb-12 md:pt-24 md:pb-16">
+        <div className="mx-auto max-w-4xl motion-safe:animate-fade-in">
+            <h1 id="hero-heading" className="text-4xl font-bold tracking-tight md:text-6xl">
+                Dylan Pant
+            </h1>
+            <p className="mt-3 text-lg font-medium text-foreground md:text-xl">
+                Computer Science @ University of Washington · Class of 2028
+            </p>
+            <p className="mt-2 text-base font-semibold text-primary md:text-lg">
+                Seeking Software Engineering internships for Summer 2027
+            </p>
+            <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground md:text-lg">
+                From Senate Page to software engineer: I build technology that serves people, most
+                recently AI and growth features at Microsoft Outlook.
+            </p>
 
-    return (
-    <section
-        id="hero"
-        className="relative min-h-screen flex flex-col items-center justify-center px-4 overflow-hidden">
-
-            <WalkingPeople/>
-
-            {/* Fades walking people into the next section */}
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/5 to-transparent z-10 pointer-events-none"/>
-
-            <div className="container max-w-4xl mx-auto text-center z-20 relative">
-                <div className="space-y-4 max-w-3xl mx-auto">
-
-                    <h1 className="text-5xl md:text-7xl font-bold tracking-tight leading-none">
-                        Dylan Pant
-                    </h1>
-
-                    <p className="text-sm text-muted-foreground tracking-wide">
-                        University of Washington &middot; CS &middot; Class of 2028
-                    </p>
-
-                    <div className="flex items-center justify-center gap-1.5 px-3 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-700 dark:text-yellow-400 text-xs font-medium w-fit mx-auto">
-                        <Medal size={12} />
-                        2024 U.S. Presidential Scholar
-                    </div>
-
-                    <p className="text-lg md:text-xl text-muted-foreground max-w-xl mx-auto leading-relaxed pt-1">
-                        From Senate Page to software engineer — I build technology that serves people.
-                    </p>
-
-                    <div className="pt-4 flex flex-wrap gap-4 justify-center">
-                        <a href="#experience" className="cosmic-button">
-                            See My Work
-                        </a>
-                        <a href="https://linkedin.com/in/dylanpant"
-                           target="_blank"
-                           rel="noopener noreferrer"
-                           className="px-6 py-3 rounded-full border border-border text-foreground/80 hover:bg-primary/10 transition-colors duration-300 flex items-center gap-2">
-                            <FaLinkedin size={16} /> LinkedIn
-                        </a>
-                    </div>
-                </div>
+            <div className="mt-8 flex flex-wrap gap-3">
+                {RESUME_AVAILABLE && (
+                    <a href={RESUME_URL} target="_blank" rel="noopener noreferrer" className={buttonStyles.primary}>
+                        <FileText size={16} aria-hidden="true" /> Resume
+                    </a>
+                )}
+                <a
+                    href={GITHUB_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={RESUME_AVAILABLE ? buttonStyles.secondary : buttonStyles.primary}
+                >
+                    <FaGithub size={16} aria-hidden="true" /> GitHub
+                </a>
+                <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" className={buttonStyles.secondary}>
+                    <FaLinkedin size={16} aria-hidden="true" /> LinkedIn
+                </a>
+                <a href={`mailto:${EMAIL}`} className={buttonStyles.secondary}>
+                    <Mail size={16} aria-hidden="true" /> Email
+                </a>
             </div>
-
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center z-20">
-                <span className="text-sm text-muted-foreground mb-2">Scroll</span>
-                <ArrowDown className="h-5 w-5 text-primary"/>
-            </div>
-        </section>);
-}
+        </div>
+    </section>
+)

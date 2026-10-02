@@ -1,183 +1,89 @@
 @import "tailwindcss";
 
-@theme {
-  /* 1. Define Shadcn Colors */
-  --color-border: hsl(var(--border));
-  --color-input: hsl(var(--input));
-  --color-ring: hsl(var(--ring));
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
+/* Class-based dark mode, driven by next-themes (attribute="class"). */
+@custom-variant dark (&:where(.dark, .dark *));
 
-  --color-primary: hsl(var(--primary));
-  --color-primary-foreground: hsl(var(--primary-foreground));
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-space-grotesk), var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 
-  --color-secondary: hsl(var(--secondary));
-  --color-secondary-foreground: hsl(var(--secondary-foreground));
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-ring: var(--ring);
 
-  --color-destructive: hsl(var(--destructive));
-  --color-destructive-foreground: hsl(var(--destructive-foreground));
+  --animate-fade-in: fade-in 0.5s ease-out both;
 
-  --color-muted: hsl(var(--muted));
-  --color-muted-foreground: hsl(var(--muted-foreground));
-
-  --color-accent: hsl(var(--accent));
-  --color-accent-foreground: hsl(var(--accent-foreground));
-
-  --color-popover: hsl(var(--popover));
-  --color-popover-foreground: hsl(var(--popover-foreground));
-
-  --color-card: hsl(var(--card));
-  --color-card-foreground: hsl(var(--card-foreground));
-
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
-
-  /* 2. Define Animations (Skiper UI + Shadcn) */
-  --animate-accordion-down: accordion-down 0.2s ease-out;
-  --animate-accordion-up: accordion-up 0.2s ease-out;
-  --animate-float: float 6s ease-in-out infinite;
-  --animate-pulse-subtle: pulse-subtle 4s ease-in-out infinite;
-  --animate-fade-in: fade-in 0.7s ease-out forwards;
-  --animate-fade-in-delay-1: fade-in 0.7s ease-out 0.2s forwards;
-  --animate-fade-in-delay-2: fade-in 0.7s ease-out 0.4s forwards;
-  --animate-meteor: meteor 5s linear infinite;
-
-  @keyframes accordion-down {
-    from { height: 0; }
-    to { height: var(--radix-accordion-content-height); }
-  }
-  @keyframes accordion-up {
-    from { height: var(--radix-accordion-content-height); }
-    to { height: 0; }
-  }
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
-  @keyframes pulse-subtle {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.8; }
-  }
   @keyframes fade-in {
-    from { opacity: 0; transform: translateY(20px); }
+    from { opacity: 0; transform: translateY(8px); }
     to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes meteor {
-    0% { transform: rotate(215deg) translateX(0); opacity: 1; }
-    70% { opacity: 1; }
-    100% { transform: rotate(215deg) translateX(-500px); opacity: 0; }
   }
 }
 
-/* 3. Base Variables (HSL Values) */
-@layer base {
-  :root {
-    --background: 210 40% 98%;
-    --foreground: 222 47% 11%;
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 47% 11%;
-    --primary: 149, 70%, 22%;
-    --primary-foreground: 110 30% 78%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222 47% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 149 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222 47% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 250 47% 60%;
-    --radius: 0.5rem;
-  }
- 
-  .dark {
-    --background: 222 47% 4%;
-    --foreground: 213 31% 91%;
-    --card: 222 47% 8%;
-    --card-foreground: 213 31% 91%;
-    --popover: 222 47% 8%;
-    --popover-foreground: 213 31% 91%;
-    --primary: 250 65% 65%;
-    --primary-foreground: 213 31% 91%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 250 65% 65%;
-  }
+/* One restrained palette: neutral slate + a single green accent.
+   Text/background pairs meet WCAG AA (4.5:1) in both themes. */
+:root {
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --card: #ffffff;
+  --muted: #f8fafc;
+  --muted-foreground: #475569;
+  --border: #e2e8f0;
+  --primary: #166534;
+  --primary-foreground: #ffffff;
+  --ring: #166534;
+  color-scheme: light;
+}
 
+.dark {
+  --background: #0b1120;
+  --foreground: #e2e8f0;
+  --card: #111827;
+  --muted: #0f172a;
+  --muted-foreground: #94a3b8;
+  --border: #1e293b;
+  --primary: #4ade80;
+  --primary-foreground: #052e16;
+  --ring: #4ade80;
+  color-scheme: dark;
+}
+
+@layer base {
   html {
-    @apply scroll-smooth;
+    scroll-behavior: smooth;
   }
 
   * {
-    @apply border-border;
+    border-color: var(--color-border);
   }
-  
+
   body {
-    @apply bg-background text-foreground transition-colors duration-300;
-    font-feature-settings: "rlig" 1, "calt" 1; /* Added this back for better text rendering */
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+
+  h1, h2, h3 {
+    font-family: var(--font-heading);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ring);
+    outline-offset: 2px;
   }
 }
 
-/* 3b. Reduced-motion overrides */
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
 }
-
-/* 4. Custom Utility Classes */
-
-@utility text-glow {
-  @apply relative;
-  /* NEW: Use a light, thick shadow for maximum visibility */
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.2), /* White glow */
-               0 0 20px rgba(255, 255, 255, 0.5); /* Wider blur */
-}
-
-@utility card-hover {
-  @apply transition-transform duration-300 hover:scale-[1.02] hover:shadow-lg;
-}
-@utility cosmic-button {
-  @apply px-6 py-3 rounded-full bg-primary text-primary-foreground font-medium transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,92,246,0.5)];
-}
-@utility gradient-border {
-  border-radius: var(--radius);
-  border: 1px solid transparent;
-  background:
-    linear-gradient(hsl(var(--card)), hsl(var(--card))) padding-box,
-    linear-gradient(135deg, hsl(var(--primary) / 35%), hsl(var(--primary) / 8%), hsl(var(--primary) / 35%)) border-box;
-}
-@utility star {
-  @apply absolute rounded-full bg-white;
-  box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.4);
-}
-@utility meteor {
-  @apply absolute bg-linear-to-r from-white via-white to-transparent rounded-full;
-  box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.3);
-}
-
-/* 5. View Transition API (For the Theme Toggle) */
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation: none;
-  mix-blend-mode: normal;
-}
-.dark::view-transition-old(root) { z-index: 1; }
-.dark::view-transition-new(root) { z-index: 999; }
-::view-transition-old(root) { z-index: 999; }
-::view-transition-new(root) { z-index: 1; }

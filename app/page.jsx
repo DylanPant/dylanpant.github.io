@@ -1,33 +1,31 @@
-import { StarBackground } from '../app/components/StarBackground';
-import { Navbar } from "../app/components/Navbar"
-import { HeroSection } from "../app/components/HeroSection";
-import { ExperienceSection } from "../app/components/ExperienceSection";
-import { ProjectsSection } from "../app/components/ProjectsSection";
-import { SkillsSection } from "../app/components/SkillsSection";
-import { AboutSection } from "../app/components/AboutSection"
-import { ContactSection } from "../app/components/ContactSection";
-import { Footer } from "../app/components/Footer";
+import { Navbar } from "./components/Navbar"
+import { HeroSection } from "./components/HeroSection"
+import { ExperienceSection } from "./components/ExperienceSection"
+import { ProjectsSection } from "./components/ProjectsSection"
+import { SkillsSection } from "./components/SkillsSection"
+import { AboutSection } from "./components/AboutSection"
+import { ContactSection } from "./components/ContactSection"
+import { Footer } from "./components/Footer"
 
 export default function Home() {
-
-    return <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
-        {/* Background Effects */}
-        <StarBackground />
-
-        {/* Nav Bar */}
-        <Navbar />
-
-        {/* Main Content */}
-        <main>
-            <HeroSection />
-            <ExperienceSection />
-            <ProjectsSection />
-            <SkillsSection />
-            <AboutSection />
-            <ContactSection />
-        </main>
-
-        {/* Footer */}
-        <Footer />
-    </div>
+    return (
+        <>
+            <a
+                href="#main"
+                className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
+            >
+                Skip to content
+            </a>
+            <Navbar />
+            <main id="main" tabIndex={-1} className="focus:outline-none">
+                <HeroSection />
+                <ExperienceSection />
+                <ProjectsSection />
+                <SkillsSection />
+                <AboutSection />
+                <ContactSection />
+            </main>
+            <Footer />
+        </>
+    )
 }

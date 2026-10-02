@@ -1,3 +1,5 @@
+import { Section } from "./Section"
+
 const experiences = [
     {
         company: "UW School of Medicine",
@@ -39,39 +41,25 @@ const experiences = [
     },
 ]
 
-export const ExperienceSection = () => {
-    return (
-        <section id="experience" className="py-24 px-4 relative">
-            <div className="container mx-auto max-w-5xl">
-                <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-                    Experience
-                </h2>
-
-                <div className="space-y-10 max-w-3xl mx-auto">
-                    {experiences.map((exp, i) => (
-                        <div key={i} className="pl-5 border-l-2 border-primary/30">
-                            <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 mb-1">
-                                <div className="flex flex-wrap items-baseline gap-x-2">
-                                    <span className="font-semibold text-foreground">{exp.company}</span>
-                                    <span className="text-muted-foreground text-sm">· {exp.role}</span>
-                                </div>
-                                <span className="text-xs text-muted-foreground shrink-0 font-medium tabular-nums">{exp.date}</span>
-                            </div>
-                            {exp.context && (
-                                <p className="text-xs text-muted-foreground mb-3">{exp.context}</p>
-                            )}
-                            <ul className="space-y-1.5">
-                                {exp.bullets.map((bullet, j) => (
-                                    <li key={j} className="flex gap-2 text-sm text-muted-foreground">
-                                        <span className="text-primary mt-[3px] shrink-0">▸</span>
-                                        <span>{bullet}</span>
-                                    </li>
-                                ))}
-                            </ul>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
-    )
-}
+export const ExperienceSection = () => (
+    <Section id="experience" title="Experience">
+        <ol className="space-y-8">
+            {experiences.map((exp) => (
+                <li key={`${exp.company}-${exp.role}`} className="border-l-2 border-border pl-5">
+                    <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+                        <h3 className="text-base font-semibold">
+                            {exp.role} <span className="font-normal text-muted-foreground">· {exp.company}</span>
+                        </h3>
+                        <p className="shrink-0 text-sm tabular-nums text-muted-foreground">{exp.date}</p>
+                    </div>
+                    {exp.context && <p className="mt-0.5 text-sm text-muted-foreground">{exp.context}</p>}
+                    <ul className="mt-3 list-disc space-y-1.5 pl-5 text-sm leading-relaxed text-foreground/90 marker:text-muted-foreground">
+                        {exp.bullets.map((bullet) => (
+                            <li key={bullet}>{bullet}</li>
+                        ))}
+                    </ul>
+                </li>
+            ))}
+        </ol>
+    </Section>
+)
